@@ -1,0 +1,232 @@
+CREATE TABLE Propietario (
+	idPropietario SERIAL PRIMARY KEY,
+	Nombre_propietario VARCHAR(45) NOT NULL,
+	Celular VARCHAR(15) NOT NULL,
+	Correo VARCHAR(45) UNIQUE NOT NULL,
+	Contraseña VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE Granja (
+	idGranja SERIAL PRIMARY KEY,
+	Nombre VARCHAR(45) NOT NULL,
+	Municipio VARCHAR(15) NOT NULL,
+	Departamento VARCHAR(45) NOT NULL,
+	Direccion VARCHAR(45) NOT NULL,
+	id_Propietario INT NOT NULL,
+	FOREIGN KEY (id_Propietario)
+	REFERENCES Propietario (idPropietario)
+);
+
+CREATE TABLE Ganado (
+	idGanado SERIAL PRIMARY KEY,
+	Num_registro INT UNIQUE NOT NULL,
+	Nombre VARCHAR(45) NOT NULL,
+	id_Granja INT NOT NULL,
+	FOREIGN KEY (id_Granja)
+	REFERENCES Granja (idGranja)
+)
+
+CREATE TABLE Caracteristicas_Ganado (
+	idCaracteristicas_Ganado SERIAL PRIMARY KEY,
+	Raza VARCHAR(45) NOT NULL,
+	PesoKg FLOAT NOT NULL,
+	Estado VARCHAR(45) NOT NULL,
+	Partos INT NOT NULL,
+	Ordeño_mañanaLts FLOAT NOT NULL,
+	Ordeño_tardeLts FLOAT NOT NULL,
+	Concentrado VARCHAR(45) NOT NULL,
+	Cant_concentradoKg FLOAT NOT NULL,
+	Fecha_ordeño DATE NOT NULL,
+	id_Ganado INT NOT NULL,
+	FOREIGN KEY (id_Ganado)
+	REFERENCES Ganado (idGanado)
+)
+
+CREATE TABLE Distribucion (
+	idDistribucion SERIAL PRIMARY KEY,
+	id_Propietario INT NOT NULL,
+	FOREIGN KEY (id_Propietario)
+	REFERENCES Propietario (idPropietario),
+	id_Proveedor INT NOT NULL,
+	FOREIGN KEY (id_Proveedor)
+	REFERENCES Proveedor (idProveedor)
+)
+
+CREATE TABLE Proveedor (
+	idProveedor SERIAL PRIMARY KEY,
+	Nombre VARCHAR(45) NOT NULL,
+	Correo VARCHAR(45) UNIQUE NOT NULL,
+	Marca_concentrado VARCHAR(45) NOT NULL,
+	Cant_concentradoKg FLOAT NOT NULL,
+	Precio_concentrado MONEY NOT NULL
+)
+
+INSERT INTO Propietario (Nombre_propietario, Celular, Correo, Contraseña)
+VALUES ('César Jimenez','3102223333','cesar@correo.com','Cesar111'),
+       ('Eduardo Garcia','3101112222','eduardo@correo.com','Eduardo111'),
+       ('Felipe Manrique','3103332222','felipe@correo.com','Felipe111'),
+       ('Alejandro Martinez','3104442222','alejandro@correo.com','Alejandro111'),
+       ('Andres Melo','3105552222','andres@correo.com','Andres111'),
+       ('Carolina Betancour','3106662222','carolina@correo.com','Carolina111');
+
+
+INSERT INTO Granja (Nombre, Municipio, Departamento, Direccion, id_Propietario)
+VALUES ('El Paraiso','Cota','Cundinamarca','Vereda Manzanillo Km 3', '1'),
+	('Cerezal','Cumaral','Meta','Vereda Hatogrande via Restrepo Km8', '1'),
+	('Tres Potrillos','Facatativa','Cundinamarca','Sector tres cruces Vereda Pueblo Viejo', '2'),
+	('La Celosa','El Rosal','Cundinamarca','Vereda Retiro Km 3', '3'),
+	('Labranza','Montelibano','Cordoba','Sector La Y vereda Agua Caliente', '4'),
+	('Tres Soles','Tierranegra','Boyaca','Vereda Cruces Km 6', '5'),
+	('As de Picas','Villeta','Cundinamarca','Sector El Sisga', '5'),
+	('La Fantasia','Villapinzon','Cundinamarca','Vereda Arizona', '5'),
+	('Mil Amores','Choconta','Cundinamarca','Vereda Mochila Km 12', '5'),
+	('Tierra Grande','Ubate','Boyaca','Vereda Tilata Km 2', '6');
+
+
+INSERT INTO Ganado (Num_registro, Nombre, id_Granja)
+VALUES 	('1015','Lola','1'),
+	('1010','Lola','1'),
+	('1012','Isa','1'),
+	('1013','Manchada','1'),
+	('1014','Bartolo','1'),
+	('1011','Lavada','1'),
+	('1016','Mona','1'),
+	('1017','Paola','1'),
+	('1018','Tere','1'),
+	('1019','Misca','2'),
+	('1020','Manchas','2'),
+	('1021','Amores','2'),
+	('1022','Jardinera','2'),
+	('1023','Galana','2'),
+	('1024','Galena','2'),
+	('1025','Gallarda','2'),
+	('1026','Gitana','2'),
+	('1027','Golosa','2'),
+	('1028','Golondrina','2'),
+	('1029','Guapina','2'),
+	('1030','Granadina','2'),
+	('1031','Leona','2'),
+	('1032','Linda','2'),
+	('1033','Limonera','2'),
+	('1034','Lucera','3'),
+	('1035','Majita','3'),
+	('1036','Madrileña','3'),
+	('1037','Bajita','3'),
+	('1038','Maja','3'),
+	('1039','Majita','3'),
+	('1040','Malagueña','3'),
+	('1041','Mansa','3'),
+	('1042','Mariela','3'),
+	('1043','Maña','3'),
+	('1044','Manchega','4'),
+	('1045','Maragata','4'),
+	('1046','Margarita','4'),
+	('1047','Maravilla','4'),
+	('1048','Marinera','4'),
+	('1049','Mariposa','4'),
+	('1050','Mara','4'),
+	('1051','Marquesa','4'),
+	('1052','Mosca','4'),
+	('1053','Mocha','4'),
+	('1054','Mora','5'),
+	('1055','Molinera','5'),
+	('1056','Montañosa','5'),
+	('1057','Macarena','5'),
+	('1058','Morica','5'),
+	('1059','Montesa','5'),
+	('1060','Melendra','5'),
+	('1061','Milindres','5'),
+	('1062','Caribajita','5'),
+	('1063','Consentida','5'),
+	('1064','Blanquita','5'),
+	('1065','Lindura','5'),
+	('1066','Lucero','5'),
+	('1067','Rosita','5'),
+	('1068','Rosagante','5'),
+	('1069','Ana','5'),
+	('1070','Tina','5'),
+	('1071','Betsy','5'),
+	('1072','Bonita','5'),
+	('1073','Panchita','5'),
+	('1074','Cereza','5'),
+	('1075','Sandy','5'),
+	('1076','Alegria','5'),
+	('1077','Fresita','5'),
+	('1078','Betty','5'),
+	('1079','Martina','5'),
+	('1080','Arquera','5'),
+	('1081','Colorada','5'),
+	('1082','Rosy','5'),
+	('1083','Sofia','5'),
+	('1084','Artillera','5'),
+	('1085','Carbonera','5'),
+	('1086','Castaña','5'),
+	('1087','Sierva','5'),
+	('1088','Chula','5'),
+	('1089','Campesina','5'),
+	('1090','Penelope','5'),
+	('1091','Copita','5'),
+	('1092','Azucar','5'),
+	('1093','Candi','5'),
+	('1094','Caspita','5'),
+	('1095','Dulzura','5'),
+	('1096','Solecito','5'),
+	('1097','Lunita','5'),
+	('1098','Piola','5'),
+	('1099','Bartola','5'),
+	('1100','Doña','5'),
+	('1101','Lucero','5'),
+	('1102','Onix','5'),
+	('1103','Domino','5'),
+	('1104','Sura','5'),
+	('1105','Parches','5'),
+	('1106','Carita','5'),
+	('1107','Oreo','5'),
+	('1108','Cristal','5'),
+	('1109','Dulcinea','5'),
+	('1110','Magia','5'),
+	('1111','Moli','5'),
+	('1112','Samba','5'),
+	('1113','Cosi','5'),
+	('1114','Melasa','5'),
+	('1115','Susana','6'),
+	('1116','Hershy','6'),
+	('1117','Chocolate','6'),
+	('1118','Bartolomea','6'),
+	('1119','Perla','6'),
+	('1120','Jengibre','6'),
+	('1121','Miel','6'),
+	('1122','Alce','6'),
+	('1123','Goldi','6'),
+	('1124','Marfil','6'),
+	('1125','Cocoa','6'),
+	('1126','Ambar','6'),
+	('1127','Katy','6'),
+	('1128','Princesa','6'),
+	('1129','Yiya','6'),
+	('1130','Flor','6'),
+	('1131','Sirila','6'),
+	('1132','Ella','6'),
+	('1133','Cosita','6'),
+	('1134','Yuya','6'),
+	('1135','Corchea','6'),
+	('1136','Espuma','6'),
+	('1137','Diosa','6'),
+	('1138','Sadi','6'),
+	('1139','Mimi','6');
+	
+INSERT INTO Proveedor (Nombre, Correo, Marca_concentrado, Cant_concentradoKg, Precio_concentrado)
+VALUES ('La Talanquera','latalanquera@correo.com','Masleche','100000', '3500'),
+	('Agrocampo','agrocampo@correo.com','Italcol','300000', '3000'),
+	('Agropecuaria','agropecuaria@correo.com','Colanta','200000', '3800'),
+	('Bellavista','bellavista@correo.com','Purina','400000', '2800'),
+	('Mirador','mirador@correo.com','Proplan','900000', '3300'),
+	('Mi Ranchito','miranchito@correo.com','Fedeganado','500000', '30000');
+	
+INSERT INTO Distribucion (id_Propietario, id_Proveedor)
+VALUES ('1', '1'),
+	('2','2'),
+	('3','3'),
+	('4','4'),
+	('5','5'),
+	('6','6');
