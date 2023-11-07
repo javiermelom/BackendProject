@@ -13,7 +13,7 @@ router.get("/consultaGranja", granja);
 router.get("/consultaGanado", ganado);
 router.get("/consultaCaracteristicas_ganado", caracteristicas_ganado);
 router.get("/consultaDistribucion", distribucion);
-router.get("/consultaproveedor", proveedor);
+router.get("/consultaProveedor", proveedor);
 router.post("/agregarPropietario", addpropietario);
 router.post("/agregarGranja", addgranja);
 router.post("/agregarGanado", addganado);
