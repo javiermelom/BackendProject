@@ -41,11 +41,17 @@ export async function proveedor(req, res) {
 }
 
 export async function addpropietario(req, res) {
+  console.log(req.body);
   try {
-    let resultado = await tablas.propietario.create(req.body);
+    let resultado = await tablas.propietario.create({
+      nombre_propietario: req.body.nombre_propietario,
+      celular: req.body.celular,
+      correo: req.body.correo,
+      contraseña: req.body.pass
+    });
     res.status(200).json(resultado);
   } catch (error) {
-    res.status(500).json("Error");
+    res.status(500).json(error);
   }
 }
 export async function addgranja(req, res) {
