@@ -6,10 +6,6 @@ const tablas = initModels(conexion);
 //   res.send("Hola Javier");
 // }
 
-// export function adios(req, res) {
-//   res.send("Chao Javier");
-// }
-
 export async function propietario(req, res) {
   let consulta = await tablas.propietario.findAll();
   res.status(200).json(consulta);
