@@ -12,6 +12,11 @@ export async function propietario(req, res) {
   }
 }
 
+export async function propietarios(req, res) {
+  let consulta = await tablas.propietario.findAll();
+  res.status(200).json(consulta);
+}
+
 export async function granja(req, res) {
   let consulta = await tablas.granja.findAll();
   res.json(consulta);

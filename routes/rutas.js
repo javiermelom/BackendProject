@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { propietario, granja, ganado, caracteristicas_ganado, distribucion, proveedor,
+import { propietarios, propietario, granja, ganado, caracteristicas_ganado, distribucion, proveedor,
     addpropietario, addgranja, addganado, addcaracterisiticas_ganado, adddistribucion, addproveedor,
     deletepropietario, deletegranja, deleteganado, deletecaracteristicas_ganado, deletedistribucion, deleteproveedor,
     login } 
@@ -8,8 +8,8 @@ import { propietario, granja, ganado, caracteristicas_ganado, distribucion, prov
 
 const router = Router();
 
+router.get("/consultaPropietarios", propietarios);
 router.get("/consultaPropietario/:id", propietario);
-
 router.get("/consultaGranja", granja);
 router.get("/consultaGanado", ganado);
 router.get("/consultaCaracteristicas_ganado", caracteristicas_ganado);
