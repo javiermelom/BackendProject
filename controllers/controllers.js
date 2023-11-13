@@ -2,17 +2,14 @@ import initModels from "../models/init-models.js";
 import conexion from "../config/database.js";
 const tablas = initModels(conexion);
 
-// export function hola(req, res) {
-//   res.send("Hola Javier");
-// }
-
-// export function adios(req, res) {
-//   res.send("Chao Javier");
-// }
-
 export async function propietario(req, res) {
-  let consulta = await tablas.propietario.findAll();
-  res.status(200).json(consulta);
+  const id = req.params.id
+  try {
+    let consulta = await tablas.propietario.findOne({where: { idpropietario: id }})
+    res.status(200).json(consulta);
+  } catch (error) {
+    res.status(401).json(consulta);
+  }
 }
 
 export async function granja(req, res) {

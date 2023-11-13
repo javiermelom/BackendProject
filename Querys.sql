@@ -1,5 +1,5 @@
 CREATE TABLE Propietario (
-	idPropietario SERIAL PRIMARY KEY,
+	idpropietario SERIAL PRIMARY KEY,
 	Nombre_propietario VARCHAR(45) NOT NULL,
 	Celular VARCHAR(15) NOT NULL,
 	Correo VARCHAR(45) UNIQUE NOT NULL,

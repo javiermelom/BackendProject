@@ -8,7 +8,8 @@ import { propietario, granja, ganado, caracteristicas_ganado, distribucion, prov
 
 const router = Router();
 
-router.get("/consultaPropietario", propietario);
+router.get("/consultaPropietario/:id", propietario);
+
 router.get("/consultaGranja", granja);
 router.get("/consultaGanado", ganado);
 router.get("/consultaCaracteristicas_ganado", caracteristicas_ganado);
