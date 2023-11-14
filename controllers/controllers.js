@@ -4,6 +4,7 @@ const tablas = initModels(conexion);
 
 ///////////////////// PROPIETARIO ///////////////////////////
 
+
 export async function propietario(req, res) {
   const id = req.params.id
   try {
@@ -106,7 +107,14 @@ export async function deleteganado(req, res) {
   }
 }
 
+export async function ganadoGranja(req, res) {
+  const id = req.params.id;
+  let consulta = await tablas.ganado.findAll({where:{id_granja:id}});
+  res.json(consulta);
+}
+
 ///////////////////// CARACTERISTICAS GANADO///////////////////////////
+
 
 export async function caracteristicas_ganado(req, res) {
   let consulta = await tablas.caracteristicas_ganado.findAll();
@@ -133,7 +141,14 @@ export async function deletecaracteristicas_ganado(req, res) {
   }
 }
 
+export async function caracteristicasGanado(req, res) {
+  const id = req.params.id;
+  let consulta = await tablas.caracteristicas_ganado.findAll({where:{id_ganado:id}});
+  res.json(consulta);
+}
+
 ///////////////////// DISTRIBUCION ///////////////////////////
+
 
 export async function distribucion(req, res) {
   let consulta = await tablas.distribucion.findAll();
@@ -187,8 +202,13 @@ export async function deleteproveedor(req, res) {
   }
 }
 
+// export async function proveedorPropietario(req, res) {
+//   const id = req.params.id;
+//   let consulta = await tablas.proveedor.findAll({where:{id_propietario:id}});
+//   res.json(consulta);
+// }
 
-///////////////////// PROVEEDOR ///////////////////////////
+///////////////////// LOGIN ///////////////////////////
 
 export async function login(req, res) {
   try {
