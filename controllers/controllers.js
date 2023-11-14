@@ -22,6 +22,11 @@ export async function granja(req, res) {
   res.json(consulta);
 }
 
+export async function granjaPropietario(req, res) {
+  const id = req.params.id;
+  let consulta = await tablas.granja.findAll({where:{id_propietario:id}});
+  res.json(consulta);
+}
 export async function ganado(req, res) {
   let consulta = await tablas.ganado.findAll();
   res.json(consulta);
