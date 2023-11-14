@@ -2,7 +2,7 @@ import { Router } from "express";
 import { propietarios, propietario, granja, ganado, caracteristicas_ganado, distribucion, proveedor,
     addpropietario, addgranja, addganado, addcaracterisiticas_ganado, adddistribucion, addproveedor,
     deletepropietario, deletegranja, deleteganado, deletecaracteristicas_ganado, deletedistribucion, deleteproveedor,
-    login, granjaPropietario, ganadoPropietario, proveedorPropietario } 
+    login, granjaPropietario } 
     from "../controllers/controllers.js";
 // import initModels from "../models/init-models.js";
 
@@ -29,8 +29,8 @@ router.delete("/borrarDistribuicion/:id", deletedistribucion);
 router.delete("/borrarProveedor/:id", deleteproveedor);
 router.post("/loginUsuario", login);
 router.get("/granjaPropietario/:id", granjaPropietario);
-router.get("/ganadoPropietario/:id", ganadoPropietario);
-router.get("/proveedorPropietario/:id", proveedorPropietario);
+// router.get("/ganadoPropietario/:id", ganadoPropietario);
+// router.get("/proveedorPropietario/:id", proveedorPropietario);
 
 
 export default router;
