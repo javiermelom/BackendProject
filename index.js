@@ -4,7 +4,7 @@ import router from "./routes/rutas.js";
 import cors from "cors";
 
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
 async function iniciarServidor() {
   try {
@@ -17,8 +17,8 @@ async function iniciarServidor() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(router);
-  app.listen(PORT);
-  console.log(`Servidor funcionando en el puerto ${ PORT }`);
+  app.listen(port);
+  console.log(`Servidor funcionando en el puerto ${ port }`);
 }
 
 iniciarServidor();
